@@ -8,7 +8,7 @@ export default {
   component: Word,
 } as ComponentMeta<typeof Word>;
 
-const Template: ComponentStory<typeof Word> = (args) => <Word {...args} />;
+const Template: ComponentStory<typeof Word> = () => <Word />;
 
 export const FirstStory = Template.bind({});
 FirstStory.storyName = "default";

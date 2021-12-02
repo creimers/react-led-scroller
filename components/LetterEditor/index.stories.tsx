@@ -8,9 +8,7 @@ export default {
   component: LetterEditor,
 } as ComponentMeta<typeof LetterEditor>;
 
-const Template: ComponentStory<typeof LetterEditor> = (args) => (
-  <LetterEditor {...args} />
-);
+const Template: ComponentStory<typeof LetterEditor> = () => <LetterEditor />;
 
 export const FirstStory = Template.bind({});
 FirstStory.storyName = "default";
