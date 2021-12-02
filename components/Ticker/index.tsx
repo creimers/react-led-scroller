@@ -35,10 +35,18 @@ function sentenceToColumns(sentence: string) {
   return lettersAsColuns;
 }
 
-export default function Ticker() {
-  const [sentence] = React.useState("Endstation: Buxtehude");
-  const [sentenceAsColumns] = React.useState(() => sentenceToColumns(sentence));
+export default function Ticker({
+  text = "Test eins zwei.",
+}: {
+  text?: string;
+}) {
+  // const [sentence] = React.useState("Christoph Reimers.");
   const [tickerIndex, setTickerIndex] = React.useState(0);
+
+  // const [sentenceAsColumns] = React.useState(() => sentenceToColumns(text));
+  const sentenceAsColumns = React.useMemo(() => {
+    return sentenceToColumns(text);
+  }, [text]);
 
   useInterval(() => {
     setTickerIndex((i) => i + 1);

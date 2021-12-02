@@ -1,36 +1,89 @@
-import { a } from "./a";
-import { B } from "./b";
-import { d } from "./d";
+import { a, A } from "./a";
+import { b, B } from "./b";
+import { c, C } from "./c";
+import { d, D } from "./d";
 import { E, e } from "./e";
-import { h } from "./h";
-import { i } from "./i";
-import { n } from "./n";
-import { o } from "./o";
-import { R } from "./r";
-import { s } from "./s";
-import { t } from "./t";
-import { u } from "./u";
-import { x } from "./x";
+import { f, F } from "./f";
+import { g, G } from "./g";
+import { h, H } from "./h";
+import { i, I } from "./i";
+import { j, J } from "./j";
+import { k, K } from "./k";
+import { l, L } from "./l";
+import { m, M } from "./m";
+import { n, N } from "./n";
+import { o, O } from "./o";
+import { p, P } from "./p";
+import { q, Q } from "./q";
+import { r, R } from "./r";
+import { s, S } from "./s";
+import { t, T } from "./t";
+import { u, U } from "./u";
+import { v, V } from "./v";
+import { w, W } from "./w";
+import { x, X } from "./x";
+import { y, Y } from "./y";
+import { z, Z } from "./z";
 
-import { colon } from "./punctuation";
+import { colon, dot, exclamation } from "./punctuation";
 
 const emptyColumn: boolean[] = new Array(16).fill(false);
 
 export const ALPHABET_MAPPING: { [key: string]: boolean[][] } = {
   a,
+  A,
+  b,
   B,
+  c,
+  C,
   d,
+  D,
   e,
   E,
+  f,
+  F,
+  g,
+  G,
   h,
+  H,
   i,
+  I,
+  j,
+  J,
+  k,
+  K,
+  l,
+  L,
+  m,
+  M,
   n,
+  N,
   o,
+  O,
+  p,
+  P,
+  q,
+  Q,
+  r,
   R,
   s,
+  S,
   t,
+  T,
   u,
+  U,
+  v,
+  V,
+  w,
+  W,
   x,
+  X,
+  y,
+  Y,
+  z,
+  Z,
   ":": colon,
+  ".": dot,
+  "!": exclamation,
   " ": [emptyColumn],
 };
