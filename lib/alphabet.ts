@@ -1,4 +1,4 @@
-import { a, A } from "./a";
+import { a, A, ä, Ä } from "./a";
 import { b, B } from "./b";
 import { c, C } from "./c";
 import { d, D } from "./d";
@@ -18,7 +18,7 @@ import { q, Q } from "./q";
 import { r, R } from "./r";
 import { s, S } from "./s";
 import { t, T } from "./t";
-import { u, U } from "./u";
+import { u, U, ü, Ü } from "./u";
 import { v, V } from "./v";
 import { w, W } from "./w";
 import { x, X } from "./x";
@@ -32,6 +32,8 @@ const emptyColumn: boolean[] = new Array(16).fill(false);
 export const ALPHABET_MAPPING: { [key: string]: boolean[][] } = {
   a,
   A,
+  ä,
+  Ä,
   b,
   B,
   c,
@@ -72,6 +74,8 @@ export const ALPHABET_MAPPING: { [key: string]: boolean[][] } = {
   T,
   u,
   U,
+  ü,
+  Ü,
   v,
   V,
   w,

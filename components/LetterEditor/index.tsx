@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { ALPHABET_MAPPING } from "lib/alphabet";
 import Column from "../Column";
 
 const emptyColumn = new Array(16).fill(false);
@@ -63,15 +64,33 @@ export default function LetterEditor() {
 
   function reset() {
     setPattern([...new Array(defaultColumns)].map(() => [...emptyColumn]));
+    setColumns(defaultColumns);
   }
 
   return (
-    <div>
+    <div className="space-y-4">
+      <div className="flex flex-wrap space-x-1">
+        {Object.keys(ALPHABET_MAPPING).map((l, i) => (
+          <div
+            className="cursor-pointer"
+            key={`alphabet-letter-${i}`}
+            onClick={() => setPattern(ALPHABET_MAPPING[l])}
+          >
+            {l}
+          </div>
+        ))}
+      </div>
       <div className="grid grid-cols-2 gap-8">
-        <div>
+        <div className="space-y-4">
           <div className="flex justify-between">
-            <button onClick={reset}>reset</button>
+            <button
+              onClick={reset}
+              className="px-4 py-1 bg-gray-600 hover:bg-gray-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-200"
+            >
+              reset
+            </button>
             <input
+              className="border border-gray-400 p-1 rounded"
               value={columns}
               type="number"
               min="1"
@@ -112,8 +131,9 @@ export default function LetterEditor() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="space-y-4">
           <button
+            className="px-4 py-1 bg-gray-600 hover:bg-gray-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-200"
             onClick={() =>
               copyTextToClipboard(JSON.stringify(pattern, null, 3))
             }

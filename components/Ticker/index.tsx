@@ -40,10 +40,8 @@ export default function Ticker({
 }: {
   text?: string;
 }) {
-  // const [sentence] = React.useState("Christoph Reimers.");
   const [tickerIndex, setTickerIndex] = React.useState(0);
 
-  // const [sentenceAsColumns] = React.useState(() => sentenceToColumns(text));
   const sentenceAsColumns = React.useMemo(() => {
     return sentenceToColumns(text);
   }, [text]);
@@ -60,16 +58,7 @@ export default function Ticker({
     currentTickerIndex < COLUMNS ? COLUMNS - currentTickerIndex : 0;
   let sentenceStart =
     currentTickerIndex > COLUMNS ? currentTickerIndex - COLUMNS : 0;
-  //   const sentenceStart = currentTickerIndex;
-  // if ()
   const sentenceEnd = currentTickerIndex;
-  //   console.log({
-  //     currentTickerIndex,
-  //     sentenceStart,
-  //     before,
-  //     sentenceEnd,
-  //     sentenceColums: sentenceLength,
-  //   });
   const after =
     currentTickerIndex > sentenceLength
       ? currentTickerIndex - sentenceLength
