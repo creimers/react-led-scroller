@@ -9,7 +9,7 @@ export default function LED({ on = false, toggleOn, cursor }: Props) {
     <div
       className={`${
         cursor ? "cursor-pointer" : ""
-      } w-3 h-3 rounded-full ${background}`}
+      } w-1 h-1 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full ${background}`}
       onClick={() => {
         if (toggleOn) {
           toggleOn();

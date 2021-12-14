@@ -1,13 +1,16 @@
-import { useInterval } from "react-use";
-
 import * as React from "react";
-import Column from "components/Column";
+import { useInterval } from "react-use";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "tailwind.config.js";
 
-const emptyColumn: boolean[] = new Array(16).fill(false);
+import Column from "components/Column";
 
 import { ALPHABET_MAPPING } from "lib/alphabet";
 
-const COLUMNS = 60;
+const emptyColumn: boolean[] = new Array(16).fill(false);
+
+//@ts-ignore
+const fullConfig = resolveConfig(tailwindConfig);
 
 function sentenceToColumns(sentence: string) {
   const letters = sentence
@@ -27,7 +30,6 @@ function sentenceToColumns(sentence: string) {
     }
     if (index < letters.length - 1) {
       lettersAsColuns.push(emptyColumn);
-      lettersAsColuns.push(emptyColumn);
     }
   }
   lettersAsColuns.push(emptyColumn);
@@ -35,12 +37,44 @@ function sentenceToColumns(sentence: string) {
   return lettersAsColuns;
 }
 
+type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+
+function getBreakpointOfWindowWidth() {
+  const breakpoints = fullConfig.theme.screens as { [key: string]: string };
+  let currentBreakpoint: Breakpoint = "xs";
+  for (const breakpoint in breakpoints) {
+    const breakpointWidth = breakpoints[breakpoint];
+    const breakpointInPx = Number(breakpointWidth.replace(/px/, ""));
+    if (window.innerWidth >= breakpointInPx + 1) {
+      currentBreakpoint = breakpoint as Breakpoint;
+    }
+  }
+  return currentBreakpoint;
+}
+
+const COLUMNS_BREAKPOINT_MAPPING = {
+  xs: 35,
+  sm: 50,
+  md: 50,
+  lg: 60,
+  xl: 70,
+  "2xl": 80,
+};
+
 export default function Ticker({
-  text = "Test eins zwei.",
+  text = "Was sagst du dazu?",
 }: {
   text?: string;
 }) {
   const [tickerIndex, setTickerIndex] = React.useState(0);
+  const [columns, setColumns] = React.useState(0);
+
+  React.useEffect(() => {
+    const breakpoint = getBreakpointOfWindowWidth();
+    const cols = COLUMNS_BREAKPOINT_MAPPING[breakpoint];
+    console.log({ breakpoint, cols });
+    setColumns(cols);
+  }, []);
 
   const sentenceAsColumns = React.useMemo(() => {
     return sentenceToColumns(text);
@@ -48,16 +82,16 @@ export default function Ticker({
 
   useInterval(() => {
     setTickerIndex((i) => i + 1);
-  }, 125);
+  }, 100);
 
   const sentenceLength = sentenceAsColumns.length;
 
-  const currentTickerIndex = tickerIndex % (sentenceLength + COLUMNS);
+  const currentTickerIndex = tickerIndex % (sentenceLength + columns);
 
   const before =
-    currentTickerIndex < COLUMNS ? COLUMNS - currentTickerIndex : 0;
+    currentTickerIndex < columns ? columns - currentTickerIndex : 0;
   let sentenceStart =
-    currentTickerIndex > COLUMNS ? currentTickerIndex - COLUMNS : 0;
+    currentTickerIndex > columns ? currentTickerIndex - columns : 0;
   const sentenceEnd = currentTickerIndex;
   const after =
     currentTickerIndex > sentenceLength
@@ -76,6 +110,14 @@ export default function Ticker({
           <Column pattern={column} key={`column-${i}`} />
         ))}
       </div>
+      {/* <div className="text-white">
+        <div className="block sm:hidden">xs</div>
+        <div className="hidden sm:block md:hidden">sm</div>
+        <div className="hidden md:block lg:hidden">md</div>
+        <div className="hidden lg:block xl:hidden">lg</div>
+        <div className="hidden xl:block 2xl:hidden">xl</div>
+        <div className="hidden 2xl:block">2xl</div>
+      </div> */}
     </div>
   );
 }

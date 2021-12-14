@@ -25,7 +25,14 @@ import { x, X } from "./x";
 import { y, Y } from "./y";
 import { z, Z } from "./z";
 
-import { colon, dot, exclamation } from "./punctuation";
+import {
+  colon,
+  dot,
+  exclamation,
+  question,
+  comma,
+  hyphen,
+} from "./punctuation";
 
 const emptyColumn: boolean[] = new Array(16).fill(false);
 
@@ -88,6 +95,9 @@ export const ALPHABET_MAPPING: { [key: string]: boolean[][] } = {
   Z,
   ":": colon,
   ".": dot,
+  ",": comma,
   "!": exclamation,
-  " ": [emptyColumn],
+  "?": question,
+  "-": hyphen,
+  " ": [emptyColumn, emptyColumn],
 };

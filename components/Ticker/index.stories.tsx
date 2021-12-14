@@ -8,7 +8,7 @@ export default {
   component: Ticker,
 } as ComponentMeta<typeof Ticker>;
 
-const Template: ComponentStory<typeof Ticker> = () => <Ticker />;
+const Template: ComponentStory<typeof Ticker> = (args) => <Ticker {...args} />;
 
 export const FirstStory = Template.bind({});
 FirstStory.storyName = "default";

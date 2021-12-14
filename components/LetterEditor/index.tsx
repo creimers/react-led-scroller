@@ -20,9 +20,9 @@ export default function LetterEditor() {
     [...new Array(columns)].map(() => [...emptyColumn])
   );
 
-  React.useEffect(() => {
-    setPattern([...new Array(columns)].map(() => [...emptyColumn]));
-  }, [columns]);
+  // React.useEffect(() => {
+  //   setPattern([...new Array(columns)].map(() => [...emptyColumn]));
+  // }, [columns]);
 
   function updatePattern(columnIndex: number) {
     function toggleOn(rowIndex: number) {
@@ -74,7 +74,10 @@ export default function LetterEditor() {
           <div
             className="cursor-pointer"
             key={`alphabet-letter-${i}`}
-            onClick={() => setPattern(ALPHABET_MAPPING[l])}
+            onClick={() => {
+              setPattern(ALPHABET_MAPPING[l]);
+              setColumns(ALPHABET_MAPPING[l].length);
+            }}
           >
             {l}
           </div>
@@ -95,7 +98,9 @@ export default function LetterEditor() {
               type="number"
               min="1"
               onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                setColumns(Number(e.currentTarget.value));
+                const columns = Number(e.currentTarget.value);
+                setColumns(columns);
+                setPattern([...new Array(columns)].map(() => [...emptyColumn]));
               }}
             />
           </div>

@@ -6,7 +6,7 @@ const emptyColumn: boolean[] = new Array(16).fill(false);
 import { ALPHABET_MAPPING } from "lib/alphabet";
 
 export default function Word() {
-  const [word, setWord] = React.useState("Steffen du Ratte!");
+  const [word, setWord] = React.useState("geh mir weg du Affe.");
   const letters = word
     .split("")
     .filter((letter) => ALPHABET_MAPPING[letter] !== undefined);
@@ -25,7 +25,7 @@ export default function Word() {
     }
     if (index < letters.length - 1) {
       separatedLetters.push(emptyColumn);
-      separatedLetters.push(emptyColumn);
+      // separatedLetters.push(emptyColumn);
     }
   }
   separatedLetters.push(emptyColumn);
