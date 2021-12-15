@@ -16,7 +16,7 @@ import { o, O } from "./o";
 import { p, P } from "./p";
 import { q, Q } from "./q";
 import { r, R } from "./r";
-import { s, S } from "./s";
+import { s, S, ß } from "./s";
 import { t, T } from "./t";
 import { u, U, ü, Ü } from "./u";
 import { v, V } from "./v";
@@ -93,6 +93,7 @@ export const ALPHABET_MAPPING: { [key: string]: boolean[][] } = {
   Y,
   z,
   Z,
+  ß,
   ":": colon,
   ".": dot,
   ",": comma,
